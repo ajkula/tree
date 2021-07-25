@@ -13,9 +13,9 @@ var boldGrey = TextStyle(
 DataStorage data = DataStorage();
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   User user = User();
 
-  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     ChangeNotifierProvider(
       create: (context) => Reducer(user),
@@ -64,11 +64,13 @@ class Reducer with ChangeNotifier {
     notifyListeners();
   }
 
+  int getscheduleDistanceDone(ScheduleTracker schedule) {
+    return (schedule.startKm - user.cars[user.getSelectedCar()].actualKm);
+  }
+
   double fillKmBar(ScheduleTracker schedule) {
     CarStatus car = user.cars[user.getSelectedCar()];
-    print(car.actualKm);
-    schedule.kmCount = schedule.baseKm - car.actualKm;
-    return schedule.kmCount / 20000;
+    return (schedule.startKm - car.actualKm) / 20000;
   }
 
   double fillTimerBar(ScheduleTracker schedule) {
@@ -85,6 +87,16 @@ class Reducer with ChangeNotifier {
     return spent / maxTime;
   }
 }
+
+Function alignCenter = (String text) => Center(child: Text(text));
+
+// class MyHomePage extends StatefulWidget {
+//   MyHomePage({Key key, this.title}) : super(key: key);
+//   final String title;
+
+//   @override
+//   App createState() => App();
+// }
 
 class App extends StatelessWidget {
   @override
@@ -112,8 +124,6 @@ class App extends StatelessWidget {
     );
   }
 }
-
-Function alignCenter = (String text) => Center(child: Text(text));
 
 class MainPage extends StatelessWidget {
   _getMaintenancesList(BuildContext context) {
@@ -351,10 +361,12 @@ Widget mainCarList(BuildContext context, List elements) {
                 progressBar(Provider.of<Reducer>(context).fillTimerBar(item)),
           ),
           Text(
-            "Km since: " + (item.baseKm).toString(),
+            "Km since: " +
+                (Provider.of<Reducer>(context).getscheduleDistanceDone(item))
+                    .toString(),
             style: TextStyle(fontSize: 18),
           ),
-          //  ICI LES PROGRESS BARS ET LA DATE...
+          //  PROGRESS BARS & DATE...
           Container(
             padding: EdgeInsets.symmetric(vertical: 8.0),
             child: progressBar(

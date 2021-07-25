@@ -8,15 +8,15 @@ var twoYearsFromToday =
 
 List<ScheduleTracker> baseMaintenanceNamesList() {
   return [
-    new ScheduleTracker("Contrôle technique", now, twoYearsFromToday, 0, 0),
-    new ScheduleTracker("Révision", now, twoYearsFromToday, 0, 0),
-    new ScheduleTracker("Courroie", now, twoYearsFromToday, 0, 0),
-    new ScheduleTracker("Vidange", now, twoYearsFromToday, 0, 0),
-    new ScheduleTracker("Freins", now, twoYearsFromToday, 0, 0),
-    new ScheduleTracker("Filtres huile", now, twoYearsFromToday, 0, 0),
-    new ScheduleTracker("Filtre carburant", now, twoYearsFromToday, 0, 0),
-    new ScheduleTracker("Filtre habitacle", now, twoYearsFromToday, 0, 0),
-    new ScheduleTracker("Pneus", now, twoYearsFromToday, 0, 0),
+    new ScheduleTracker("Contrôle technique", now, twoYearsFromToday, 0),
+    new ScheduleTracker("Révision", now, twoYearsFromToday, 0),
+    new ScheduleTracker("Courroie", now, twoYearsFromToday, 0),
+    new ScheduleTracker("Vidange", now, twoYearsFromToday, 0),
+    new ScheduleTracker("Freins", now, twoYearsFromToday, 0),
+    new ScheduleTracker("Filtres huile", now, twoYearsFromToday, 0),
+    new ScheduleTracker("Filtre carburant", now, twoYearsFromToday, 0),
+    new ScheduleTracker("Filtre habitacle", now, twoYearsFromToday, 0),
+    new ScheduleTracker("Pneus", now, twoYearsFromToday, 0),
   ];
 }
 

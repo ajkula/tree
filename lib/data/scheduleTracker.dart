@@ -2,24 +2,20 @@ class ScheduleTracker {
   String name;
   int lastDone;
   int deadLine;
-  int kmCount;
-  int baseKm;
+  int startKm;
 
-  ScheduleTracker(
-      this.name, this.lastDone, this.deadLine, this.baseKm, this.kmCount);
+  ScheduleTracker(this.name, this.lastDone, this.deadLine, this.startKm);
 
   ScheduleTracker.fromJson(Map<String, dynamic> json)
       : name = json['name'],
         lastDone = json['lastDone'],
         deadLine = json['deadLine'],
-        kmCount = json['kmCount'],
-        baseKm = json['baseKm'];
+        startKm = json['startKm'];
 
   Map<String, dynamic> toJson() => {
         'name': name,
         'lastDone': lastDone,
         'deadLine': deadLine,
-        'kmCount': kmCount,
-        'baseKm': baseKm,
+        'startKm': startKm,
       };
 }

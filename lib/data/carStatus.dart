@@ -3,7 +3,6 @@ import 'package:tree/data/scheduleTracker.dart';
 class CarStatus {
   int baseKm;
   int actualKm;
-  int kmDiff;
   String carName;
   List<ScheduleTracker> scheduleTrackerList;
 
@@ -12,15 +11,18 @@ class CarStatus {
   void setBaseKm(int bk) {
     actualKm = bk;
     scheduleTrackerList.forEach((element) {
-      element.baseKm = bk;
+      element.startKm = bk;
     });
+  }
+
+  void incrementKmCounter(int newKm) {
+    actualKm = newKm;
   }
 
   CarStatus.fromJson(Map<String, dynamic> json)
       : carName = json['carName'],
         baseKm = json['baseKm'],
         actualKm = json['actualKm'],
-        kmDiff = json['kmDiff'],
         scheduleTrackerList =
             List<ScheduleTracker>.from(json['scheduleTrackerList']);
 
@@ -28,7 +30,6 @@ class CarStatus {
         'carName': carName,
         'baseKm': baseKm,
         'actualKm': actualKm,
-        'kmDiff': kmDiff,
         'scheduleTrackerList': encondeToJson(scheduleTrackerList),
       };
 
